@@ -1,0 +1,21 @@
+{
+  "name": "elm-setup",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "test": "elm-test",
+    "review": "elm-review --fix-all"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "elm": "^0.19.1-6",
+    "elm-format": "^0.8.7",
+    "elm-review": "^2.12.0",
+    "elm-test": "^0.19.1-revision12",
+    "vite": "^5.3.1",
+    "vite-plugin-elm": "^3.0.1"
+  }
+}
