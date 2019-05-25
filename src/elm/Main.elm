@@ -5,8 +5,10 @@ import Browser.Events
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
+import Element.Events as Events
 import Element.Font as Font
 import Html exposing (Html)
+import Ports
 
 
 
@@ -29,11 +31,14 @@ main =
 
 type alias Model =
     { window : Window
+    , token : Maybe Ports.Token
     }
 
 
 type Msg
     = WindowSize Int Int
+    | Login
+    | LoginResponse (Result String Ports.Token)
 
 
 type alias Flags =
@@ -59,6 +64,7 @@ init flags =
 initialModel : Flags -> Model
 initialModel flags =
     { window = flags.window
+    , token = Nothing
     }
 
 
@@ -74,6 +80,21 @@ update msg model =
             , Cmd.none
             )
 
+        Login ->
+            ( model
+            , Ports.login { name = "user", pass = "password" }
+            )
+
+        LoginResponse (Ok token) ->
+            ( { model | token = Just token }
+            , Cmd.none
+            )
+
+        LoginResponse (Err errMsg) ->
+            ( model
+            , Cmd.none
+            )
+
 
 
 -- Subscriptions
@@ -81,7 +102,10 @@ update msg model =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Browser.Events.onResize WindowSize
+    Sub.batch
+        [ Browser.Events.onResize WindowSize
+        , Ports.loginResponse LoginResponse
+        ]
 
 
 
@@ -90,15 +114,33 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    layout [ Font.family [ Font.sansSerif ] ] <| mainLayout model.window
+    layout [ Font.family [ Font.sansSerif ] ] <| mainLayout model
 
 
-mainLayout window =
-    row
-        [ width fill
-        , height <| px window.height
-        ]
-        [ login ]
+mainLayout model =
+    case model.token of
+        Just token ->
+            row
+                [ width fill
+                , height <| px model.window.height
+                ]
+                [ row
+                    [ centerX
+                    , centerY
+                    , Background.color blue
+                    , Border.rounded 30
+                    , padding 50
+                    , Font.color white
+                    ]
+                    [ text <| "whoop " ++ token.token ]
+                ]
+
+        Nothing ->
+            row
+                [ width fill
+                , height <| px model.window.height
+                ]
+                [ login ]
 
 
 login =
@@ -116,6 +158,7 @@ login =
             , Font.letterSpacing 10
             , centerX
             , padding 100
+            , pointer
             ]
             title
         , row [ width fill ]
@@ -136,6 +179,7 @@ login =
                 , pointer
                 , padding 30
                 , mouseOver [ alpha 0.5 ]
+                , Events.onClick Login
                 ]
                 [ el [ centerX ] <| text "Login" ]
             ]
@@ -145,7 +189,16 @@ login =
 title =
     let
         caption =
-            below <| el [ centerX, Font.size 10, moveDown 20 ] <| text "I LOVE BREAD!!"
+            below <|
+                el
+                    [ centerX
+                    , Font.size 10
+                    , moveDown 20
+                    , alpha 0
+                    , pointer
+                    , mouseOver [ alpha 1 ]
+                    ]
+                    (text "I LOVE BREAD!!")
     in
     el [ caption ] <| text "OPRAH"
 
