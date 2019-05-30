@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html",
+    "dev": "npm run gen-interop && parcel src/index.html",
+    "build": "npm run gen-interop && parcel build src/index.html",
     "gen-interop": "npx elm-typescript-interop"
   },
   "author": "",
