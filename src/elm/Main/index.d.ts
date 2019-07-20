@@ -6,20 +6,12 @@ export namespace Elm {
   namespace Main {
     export interface App {
       ports: {
-        login: {
-          subscribe(callback: (data: { name: string; pass: string }) => void): void
-        }
-        loginSuccess: {
-          send(data: { token: string }): void
-        }
-        loginFailure: {
-          send(data: string): void
-        }
+        
       };
     }
     export function init(options: {
       node?: HTMLElement | null;
-      flags: { window: { width: number; height: number } };
+      flags: null;
     }): Elm.Main.App;
   }
 }
