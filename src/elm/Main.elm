@@ -2,7 +2,6 @@ module Main exposing (main)
 
 import Browser exposing (Document)
 import Html exposing (Attribute, Html, p, text)
-import Html.Attributes exposing (attribute)
 
 
 
@@ -45,7 +44,7 @@ init flags =
 
 
 initialModel : Flags -> Model
-initialModel flags =
+initialModel _ =
     {}
 
 
@@ -82,9 +81,4 @@ view model =
 
 hello : Html msg
 hello =
-    p [ label "hello" ] [ text "hello" ]
-
-
-label : String -> Attribute msg
-label =
-    attribute "data-label"
+    p [] [ text "hello" ]

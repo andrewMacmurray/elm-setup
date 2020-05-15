@@ -5,6 +5,4 @@ node_modules
 
 .cache
 dist
-
-integration/cypress/screenshots
-integration/cypress/videos
+.idea

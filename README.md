@@ -1,6 +1,6 @@
 # Elm Setup
 
-Frontend setup with Elm, Typescript, Parcel and Cypress
+Frontend setup with Elm, Typescript, and Parcel
 
 # Get up and running
 
@@ -25,17 +25,5 @@ Build the project
 Run unit tests
 
 ```
-> npm run test:unit
-```
-
-Run integration tests (run the dev server before running this)
-
-```
-> npm run test:integration
-```
-
-Run Cypress in interactive mode
-
-```
-> npm run cypress
+> npm run test
 ```
