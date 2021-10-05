@@ -3,6 +3,5 @@ repl-temp-*
 
 node_modules
 
-.cache
 dist
 .idea
