@@ -1,6 +1,6 @@
 # Elm Setup
 
-Frontend setup with Elm, Typescript, and Parcel
+Frontend setup with Elm, Typescript, and Vite
 
 # Get up and running
 
