@@ -1,7 +1,7 @@
-module Main exposing (main)
+module Main exposing (Flags, Model, Msg, main)
 
 import Browser exposing (Document)
-import Html exposing (Attribute, Html, p, text)
+import Html exposing (Html, p, text)
 
 
 
@@ -22,6 +22,10 @@ main =
 -- Model
 
 
+type alias Flags =
+    ()
+
+
 type alias Model =
     {}
 
@@ -30,22 +34,13 @@ type Msg
     = NoOp
 
 
-type alias Flags =
-    ()
-
-
 
 -- Init
 
 
 init : Flags -> ( Model, Cmd Msg )
-init flags =
-    ( initialModel flags, Cmd.none )
-
-
-initialModel : Flags -> Model
-initialModel _ =
-    {}
+init _ =
+    ( {}, Cmd.none )
 
 
 
@@ -64,7 +59,7 @@ update msg model =
 
 
 subscriptions : Model -> Sub Msg
-subscriptions model =
+subscriptions _ =
     Sub.none
 
 
@@ -73,7 +68,7 @@ subscriptions model =
 
 
 view : Model -> Document Msg
-view model =
+view _ =
     { title = "App"
     , body = [ hello ]
     }

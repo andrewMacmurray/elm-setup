@@ -6,24 +6,30 @@ Frontend setup with Elm, Typescript, and Vite
 
 Install dependencies
 
-```sh
-> npm install
+```
+npm install
 ```
 
-Run the dev server
+Run locally
 
 ```
-> npm run dev
+npm start
 ```
 
 Build the project
 
 ```
-> npm run build
+npm run build
 ```
 
 Run unit tests
 
 ```
-> npm run test
+npm run test
+```
+
+Run elm-review
+
+```
+npm run review
 ```

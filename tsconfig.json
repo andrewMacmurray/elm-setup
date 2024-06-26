@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "lib": ["dom", "es6"],
+    "target": "ES2020",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "sourceMap": false
+    "noImplicitAny": true,
+    "skipLibCheck": true
   },
-  "exclude": ["node_modules", "dist"]
 }
